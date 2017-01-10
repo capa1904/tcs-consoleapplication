@@ -48,7 +48,7 @@ Target "Test" (fun _ ->
     MSBuildHelper.build(fun x ->
         { x  with
             Verbosity = Some Minimal
-            Properties =["OutputPath", "../" @@ testBuildDir; "Configuration", getBuildParamOrDefault "buildMode" "Debug"]
+            Properties =["OutputPath", "../../../" @@ testBuildDir; "Configuration", getBuildParamOrDefault "buildMode" "Debug"]
             NodeReuse = false}) testProjectFile
     |> ignore
 
