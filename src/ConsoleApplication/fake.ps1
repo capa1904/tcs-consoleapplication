@@ -11,7 +11,7 @@ if (!(test-path $nuget)) { (new-object System.Net.WebClient).DownloadFile("https
 if (!($skipPackageInstallion))
 {
     dir $dir -recurse -filter packages.config |
-    % { & $nuget install $_.FullName -o "$dir\packages" }
+    % { & $nuget install -Source http://tcs-buildserver.westeurope.cloudapp.azure.com/guestAuth/app/nuget/v1/FeedService.svc/ $_.FullName -o "$dir\packages" }
 }
 
 $fake = resolve-path $dir\packages\FAKE.*\tools\Fake.exe | select -last 1
