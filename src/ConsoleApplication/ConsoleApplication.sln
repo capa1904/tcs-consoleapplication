@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{F081FFCF-4991-460E-85B6-87172D77985E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\paket.dependencies = ..\..\paket.dependencies
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{2816598C-2E30-4142-BD3F-5E7E7D8D2B20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication.Test.Unit", "ConsoleApplication.Test.Unit\ConsoleApplication.Test.Unit.csproj", "{63ABB956-8DCD-4E1F-9B21-12E6E2C2775E}"

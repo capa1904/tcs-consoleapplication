@@ -1,0 +1,7 @@
+source http://tcs-buildserver.westeurope.cloudapp.azure.com/guestAuth/app/nuget/v1/FeedService.svc/
+source https://www.nuget.org/api/v2/
+
+nuget FAKE ~> 3.36
+nuget NUnit ~> 2.6
+nuget NUnit.Runners ~> 2.6
+nuget PackageA ~> 1.0 prerelease
