@@ -8,11 +8,11 @@ let targetDir = "target/"
 let buildDir = targetDir @@ "build/"
 let testBuildDir = targetDir @@ "test/"
 
-let testProjectFile = "ConsoleApplication.Test.Unit/ConsoleApplication.Test.Unit.csproj"
+let testProjectFile = "src/ConsoleApplication/ConsoleApplication.Test.Unit/ConsoleApplication.Test.Unit.csproj"
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 
-let projectFile = "ConsoleApplication/ConsoleApplication.csproj"
+let projectFile = "src/ConsoleApplication/ConsoleApplication/ConsoleApplication.csproj"
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ let PrintYellow infoMessage =
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 
 Description "Clean the target directory"
-Target "Clean" (fun _ -> 
+Target "Clean" (fun _ ->
     CleanDir targetDir
 )
 
@@ -34,24 +34,24 @@ Target "Clean" (fun _ ->
 Description "Compiles the project file"
 Target "Build" (fun _ ->
 
-    MSBuildHelper.build(fun x -> 
-        { x  with 
+    MSBuildHelper.build(fun x ->
+        { x  with
             Verbosity = Some Minimal
             Properties =["OutputPath", "../" @@ buildDir; "Configuration", getBuildParamOrDefault "buildMode" "Debug"]
             NodeReuse = false}) projectFile
-    |> ignore    
+    |> ignore
 )
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 Description "Run unit tests without category 'LongRunning'"
 Target "Test" (fun _ ->
-    MSBuildHelper.build(fun x -> 
-        { x  with 
+    MSBuildHelper.build(fun x ->
+        { x  with
             Verbosity = Some Minimal
             Properties =["OutputPath", "../" @@ testBuildDir; "Configuration", getBuildParamOrDefault "buildMode" "Debug"]
             NodeReuse = false}) testProjectFile
-    |> ignore                
-    
+    |> ignore
+
     !!(testBuildDir @@ "**/*.Test.Unit.dll")
       |> NUnit (fun p ->
           {p with
@@ -68,11 +68,11 @@ let listTargets() =
     Console.ForegroundColor <- ConsoleColor.Green
     printf "Available targets:\n"
     TargetDict.Values
-      |> Seq.iter (fun target -> 
+      |> Seq.iter (fun target ->
             Console.ForegroundColor <- ConsoleColor.Yellow
             printf " %s\n" target.Name
             Console.ForegroundColor <- ConsoleColor.Gray
-            printf " %s\n" (if target.Description <> null then target.Description + "\n" else "")            
+            printf " %s\n" (if target.Description <> null then target.Description + "\n" else "")
             )
     Console.ForegroundColor <- curColor
 
